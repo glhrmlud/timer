@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
+/* variáveis  */
 :root {
-  --primary-color: rgb(91, 0, 119);
-  --dark-primary-color: rgb(62, 0, 81);
+  --primary-color: #ffff;
+  --second-color: rgb(240, 164, 22);
+  --dark-primary-color: rgb(237, 235, 235);
 }
 
+/* estilos gerais */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,35 +17,38 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--primary-color);
+  background-color: var(--dark-primary-color);
   font-size: 1.3em;
   font-weight: bold;
 }
 
 .titulo {
   line-height: 1.2em;
+  z-index: 1;
 }
 
-.container {
-  background-color: white;
-  width: 75%;
-  min-height: 75vh;
-  margin: 50px auto;
-  padding: 50px;
-  border-radius: 10px;
-}
-
-.button {
-  width: 100px;
-  border: none;
-  background-color: var(--dark-primary-color);
-  color: white;
-  font-size: 16px;
-  height: 40px;
+.icon {
+  width: 35px;
+  height: 35px;
   cursor: pointer;
 }
 
-.button:hover {
+.red {
+  color: red;
+}
+
+/* estilos */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 50px;
+}
+
+.buttonTimer:hover {
   opacity: 0.95;
   transform: scale(1.05);
 }
@@ -50,19 +56,34 @@ body {
 .botoes {
   display: flex;
   gap: 20px;
-}
-
-.timer {
-  font-size: 4em;
-  text-align: center;
+  z-index: 1;
+  position: relative;
+  top: calc(30% - 25px);
 }
 
 .containerTimer {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 470px;
+  height: 470px;
+  border-radius: 50%;
+  border: 30px solid var(--primary-color);
+  align-items: center;
+  justify-content: center;
+  background-image: conic-gradient(var(--second-color) 0% 0%, var(--dark-primary-color) 0% 100%);
 }
 
-.red {
-  color: red;
+.containerTimer::before {
+  content: '';
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
+
+.timer {
+  font-size: 3em;
+  text-align: center;
+  z-index: 1;
 }
