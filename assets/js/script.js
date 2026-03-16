@@ -1,12 +1,8 @@
 function timer () {
   function criarHorasComSegundos(segundos) {
-    const data = new Date(segundos);
-    return data.toLocaleTimeString('en-GB', {
+    const data = new Date(segundos * 1000);
+    return data.toLocaleTimeString('pt-BR', {
       hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      fractionalSecondDigits: 2,
       timeZone: 'GMT'
     });
   }
@@ -19,18 +15,18 @@ function timer () {
   let progresso = 0;
   let contador;
 
-  function iniciarTimer (tempo = 1000){
+  function iniciarTimer (tempo = 60){
       contador = setInterval(() => {
       segundos++;
-      progresso = progresso + 0.1;
+      progresso += 0.6;
       if (segundos !== tempo) {
         progressBar.style.backgroundImage = `conic-gradient(var(--second-color) 0% ${progresso}%, var(--dark-primary-color) 0% 100%)`
       } else if (segundos == tempo) {
         progresso = 0;
-        tempo += 1000;
+        tempo += 60;
       }
       timer.innerHTML = criarHorasComSegundos(segundos);
-    }, 1);
+    }, 1000);
   }
 
   document.addEventListener('click', (e) => {
@@ -53,7 +49,7 @@ function timer () {
 
     if (elemento == zerar) {
       clearInterval(contador);
-      timer.innerHTML = '00:00:00.00'
+      timer.innerHTML = '00:00:00'
       timer.classList.add('pause')
       timer.classList.remove('red')
       segundos = 0;
